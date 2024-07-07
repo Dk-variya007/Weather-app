@@ -18,7 +18,7 @@
 - Flutter for the cross-platform framework.
 
 # 👉 Contact
-- For issues, contact your-email.
+- For issues, contact variyadivyesh79@gmail.com
 
 # :dart: Technology Stack :high_brightness:
 
