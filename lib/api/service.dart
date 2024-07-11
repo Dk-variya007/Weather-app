@@ -13,17 +13,20 @@ class WeatherService {
 
   //for Fetching Weather
   Future<WeatherModel> fetchWeather(String cityName) async {
-    //get response from user
-    final response = await http
-        .get(Uri.parse('$apiUrl?q=$cityName&units=metric&appid=$apiKey'));
+    try {
+      final response = await http.get(Uri.parse('$apiUrl?q=$cityName&units=metric&appid=$apiKey'));
 
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      print("$json");
-      return WeatherModel.fromJson(json);
-    } else {
-      throw Exception("Enter valide Name");
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        return WeatherModel.fromJson(json);
+      } else {
+        throw Exception("Failed to fetch data: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("Error fetching weather data: $e");
+      throw Exception("Failed to fetch weather data. Please check your internet connection.");
     }
   }
+
 
 }
